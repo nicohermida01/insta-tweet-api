@@ -69,3 +69,33 @@ export const getUserById: RequestHandler = async (
 		next(error)
 	}
 }
+
+export const getUserByUsername: RequestHandler = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
+	if (!req.params.username) {
+		return res.status(400).send({ error: 'username param is missing' })
+	}
+
+	const username = req.params.username
+
+	try {
+		const user = await UserModel.findOne({ username: username }).populate(
+			'tweets',
+			{
+				content: 1,
+				createdAt: 1,
+			}
+		)
+
+		if (!user) {
+			return res.status(404).send({ error: 'user not found' })
+		}
+
+		res.json(user)
+	} catch (error) {
+		next(error)
+	}
+}

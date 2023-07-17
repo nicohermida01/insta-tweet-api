@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import { log } from './utils/log'
 
-const connectionString = process.env.MONGODB_URI || ''
+const connectionString = process.env.MONGODB_URI_LOCAL || ''
 
 mongoose
 	.connect(connectionString)

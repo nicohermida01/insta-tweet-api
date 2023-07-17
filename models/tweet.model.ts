@@ -32,15 +32,4 @@ tweetSchema.set('toJSON', {
 	},
 })
 
-/* interface ITweet {
-	id: number
-	username: string
-	content: string
-	createdAt: Date
-	updatedAt?: Date
-	likes: string[]
-	responses: string[]
-	retweets: string[]
-} */
-
 export const TweetModel = model<ITweetDocument>('Tweet', tweetSchema)
